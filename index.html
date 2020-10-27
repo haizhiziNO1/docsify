@@ -21,7 +21,7 @@
       subMaxLevel: 2,
       auto2top: true,
       coverpage: true,
-      // logo: '_media/icon.svg',
+      logo: '_media/logo.png',
       search: {
         noData: {
           '/de-de/': 'Keine Ergebnisse!',
@@ -51,15 +51,46 @@
   <!-- <script src="//unpkg.com/docsify-plugin-codefund/index.js"></script> -->
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/gitalk.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
-  <script>
+  <!-- <script>
     const gitalk = new Gitalk({
-      clientID: '2740c7719208241ba1c2',
-      clientSecret: '998536a1d222a15b13a8b1b21a3281a2877e7f24',
-      repo: 'haizhiziNO1.github.io',
+      clientID: '1fcc5893ff94046d4d48',
+      clientSecret: '7cfb7750ebcd981435a61495af3887ff8aa681b8',
+      repo: 'docsify',
       owner: 'haizhiziNO1',
       admin: ['haizhiziNO1'],
-      id: location.pathname,
+      id: (location.pathname).split("/").pop().substring(0, 49),
       distractionFreeMode: false
+    })
+  </script> -->
+  <script>
+    function url_parse(url) {
+        var left = url.indexOf('/#/');
+        if(left < 0) {
+          return url;
+        }
+        var right = url.lastIndexOf('?');
+        if (right <= 0 || right < left) {
+          right = url.length;
+        }
+        return url.substring(left, right);
+    }
+
+    function get_talk_id() {
+      gittalk_id = url_parse(location.href);
+      console.log('href', location.href, 'id', gittalk_id);
+      if(gittalk_id.length > 45) {
+        gittalk_id = md5(gittalk_id);
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: '1fcc5893ff94046d4d48',
+      clientSecret: '7cfb7750ebcd981435a61495af3887ff8aa681b8',
+      repo: 'docsify',
+      owner: 'haizhiziNO1',
+      admin: ['haizhiziNO1'],
+      distractionFreeMode: false,
+      id: 'Docsify-TechWebSite'
     })
   </script>
 
